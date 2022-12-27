@@ -1,0 +1,59 @@
+{% extends "gallery/base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body ml-3 mr-3">
+            <form method="GET" action="" class="form-inline">
+                {% csrf_token %}
+                    <div>
+                        {{ myFilter.form }}
+                        <button type="submit" class="btn btn-secondary">ПРИМЕНИТЬ</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for image in images %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <a class="article-title gallery" href="{% url 'image-detail' image.id %}">
+                    <img class="bd-placeholder-img card-img-top" src="{{ image.picture.url }}">
+                    <h2>{{ image.title }}</h2>
+                </a>
+
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2 gallery" href="{% url 'user-images' image.author.username %}">
+                            <small>{{ image.author }}</small>
+                            <small class="text-muted">   [ {{ image.date_posted|date:"d.m.Y" }} ] </small>
+                            <img class="rounded-circle article-img" src="{{ image.author.profile.image.url }}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pagination justify-content-center w100">
+    {% if is_paginated %}
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4 mr-1" href="?page=1">Первая</a>
+        <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+      {% endif %}
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4 mr-1" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock content %}

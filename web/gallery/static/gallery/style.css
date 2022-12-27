@@ -1,0 +1,166 @@
+﻿body,
+html {
+ width:100%;
+ height:100%
+}
+
+body {
+  margin:0;
+  padding:0;
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+  font-family:Roboto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+h2 {
+    text-align: center;
+    margin: 5px;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-blue {
+  background-color: #2f363e;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.fl_left {
+  float: left;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  width: 35px;
+  margin: 8px;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin: 0 12px;
+    float: right;
+}
+
+.article-image {
+    max-height: 350px;
+    max-width: 350px;
+    width: 100%;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.article-image-d {
+    margin: auto;
+    display: block;
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+footer {
+ position: sticky!important;
+ top: 100%;
+ padding-top:25px;
+ padding-bottom:25px;
+ border-top:1px solid #ddd;
+}
+
+footer p {
+ margin:2px;
+ text-align:center;
+ padding:0 40px;
+ color:#fff;
+ font-size:12px;
+}
+
+footer a{
+  color:#777
+}
+
+footer a:hover {
+  color:#777;
+  text-decoration: none;
+}
+
+.gallery h2{
+    font-size:18px;
+    text-align: left;
+    margin: 12px
+}
+
+.gallery {
+    text-decoration: none;
+}
+
+.pagination .btn {
+    margin: 20px 5px 5px 5px;
+}
+
+.btn {
+    margin: 0 10px;
+}
+
+.form-control {
+    display: initial;
+    width: 195px;
+}

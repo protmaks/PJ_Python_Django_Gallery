@@ -1,0 +1,39 @@
+{% extends "gallery/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+        <img class="article-image-d" src="{{ image.picture.url }}">
+        <h2><a class="article-title gallery" href="{% url 'image-detail' image.id %}">{{ image.title }}</a></h2>
+
+        <div class="article-metadata">
+          <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+          <a class="mr-2" href="{% url 'user-images' object.author.username %}">{{ object.author }}</a>
+          <small class="text-muted">{{ object.date_posted|date:"d.m.Y" }}</small>
+         {% if object.author == user %}
+            <div>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'image-update' object.id %}">Редактировать</a>
+              <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'image-delete' object.id %}">Удалить</a>
+            </div>
+          {% endif %}
+        </div>
+
+        <p class="article-content"><b>Описание:</b> {{ image.description }}</p>
+        <p class="article-content"><b>Геолокация:</b></p>
+          <ul>
+            {% for country in image.geo_location.all %}
+              <li><p>{{ country.name|capfirst }}</p></li>
+            {% endfor %}
+          </ul>
+        <p class="article-content"><b>Люди на фото:</b></p>
+            <ul>
+            {% for people in image.peoples.all %}
+              <li><p>{{ people.username|capfirst }}</p></li>
+            {% endfor %}
+          </ul>
+    </div>
+
+
+
+
+  </article>
+{% endblock content %}
