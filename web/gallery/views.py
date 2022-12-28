@@ -5,6 +5,9 @@ from django.views.generic import (ListView, DetailView, CreateView, UpdateView, 
 from .models import Image
 from django.db.models import Q
 from .filters import FilterImage
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 # главная страница Галереи с фильтрами
 def home(request):
@@ -17,13 +20,20 @@ def home(request):
     }
     return render(request, 'gallery/home_filter.html', context)
 
-# вывод изображений на страницу Галереи
+
+# вывод изображений на страницу Галереи !!! только для зарегистрированных пользователей
 class ImageListView(ListView):
     model = Image
-    template_name = 'gallery/home.html'
     context_object_name = 'images'
+    template_name = 'gallery/home.html'
     ordering = ['-date_posted']
     paginate_by = 6
+
+    # отображает страницу только для зарегистрированных пользователей
+    @method_decorator(login_required())
+    def dispatch(self, request, *args, **kwargs):
+        return super(ImageListView, self).dispatch(request, *args, **kwargs)
+
 
 # поиск по сайту
 class SearchResultsView(ListView):
@@ -55,6 +65,7 @@ class UserImageListView(ListView):
 # просмотр изображения
 class ImageDetailView(DetailView):
     model = Image
+
 
 # добавление нового изображения Галереи
 class ImageCreateView(LoginRequiredMixin, CreateView):

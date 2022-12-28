@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image as IMG
 
+
+# file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
 def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'gallery_img/user_{0}/{1}'.format(instance.author.id, filename)
+
 
 class Image(models.Model):
     title = models.CharField(max_length=100)
@@ -42,5 +44,6 @@ class Image(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
+
     def __str__(self):
         return self.name
